@@ -8,21 +8,24 @@
 import SwiftUI
 
 struct PokemonDetailView: View {
-    @State var pokemon: PokemonModel = PokemonModel(id: 0, name: "", height: 0, is_default: false, order: 0, weight: 0, abilities: [], moves: [], sprites: PokemonSprites(other: OtherSprites(officialArtwork: OfficialArtworkSprite(front_default: ""))), stats: [], types: [])
-    let detailUrl: String
+    @StateObject private var viewModel: PokemonDetailViewModel
+    
+    init(detailUrl: String) {
+        _viewModel = StateObject(wrappedValue: PokemonDetailViewModel(detailUrl: detailUrl))
+    }
     
     var body: some View {
         ZStack(alignment: .leading) {
             VStack {
                 ScrollView() {
                     VStack() {
-                        PokemonThumbnail(thumbnail: pokemon.sprites.other.officialArtwork.front_default)
+                        PokemonThumbnail(thumbnail: viewModel.pokemon.sprites.other.officialArtwork.front_default)
                         
-                        PokemonStatsView(stats: pokemon.stats)
+                        PokemonStatsView(stats: viewModel.pokemon.stats)
                         
-                        PokemonAbilitiesView(abilities: pokemon.abilities)
+                        PokemonAbilitiesView(abilities: viewModel.pokemon.abilities)
                         
-                        PokemonMovesView(moves: pokemon.moves)
+                        PokemonMovesView(moves: viewModel.pokemon.moves)
                         
                         
                     }
@@ -31,19 +34,8 @@ struct PokemonDetailView: View {
                 }
             }
         }
-        .navigationTitle(pokemon.capitalizedName)
+        .navigationTitle(viewModel.pokemon.capitalizedName)
         .background(colorBackground)
-        .onAppear {
-            PokemonService.instance.getPokemonDetail(path: detailUrl) { result in
-                switch result {
-                case .success(let pokemon):
-                    self.pokemon = pokemon
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-            
-        }
     }
 }
 

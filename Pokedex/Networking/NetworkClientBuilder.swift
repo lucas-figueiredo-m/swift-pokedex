@@ -19,6 +19,24 @@ class NetworkClientBuilder {
         self.baseURL = baseURL
     }
     
+    func anotherGet<ResponseType: Codable>(path: String) async throws -> ResponseType {
+        guard let url = URL(string: path) else {
+            throw NetError.invalidUrl
+        }
+        
+        let request = URLRequest(url: url)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+            throw NetError.invalidResponse
+        }
+        
+        let payload: ResponseType = URLSession.shared.decode(data)
+        
+        return payload
+    }
+    
     func get<ResponseType: Codable>(path: String, completed: @escaping (Result<ResponseType, NetError>) -> Void) {
         guard let url = URL(string: path) else {
             completed(.failure(.invalidUrl))

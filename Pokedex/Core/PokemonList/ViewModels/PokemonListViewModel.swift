@@ -25,45 +25,47 @@ class PokemonListViewModel: ObservableObject {
     }
     
     init() {
-        getPokemons()
-    }
-    
-    func getPokemons() {
-        PokemonService.instance.getPokemonList(offset: offset) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let pokemons):
-                    self.pokemons = pokemons.results
-                    self.offset += 20
-                    self.isStarting = false
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
+        Task {
+            await getPokemons()
         }
     }
     
-    func loadMoreContent() {
+    func getPokemons() async {
+        do {
+            let pokemons = try await PokemonService.instance.getPokemonList(offset: offset)
+            DispatchQueue.main.async {
+                self.pokemons = pokemons.results
+                self.offset += 20
+                self.isStarting = false
+            }
+        } catch let error {
+            print("Error: \(error)")
+        }
+    }
+    
+    func loadMoreContent() async {
         if self.isLoading || self.isStarting {
             return
         }
-        self.isLoading = true
-        
-        PokemonService.instance.getPokemonList(offset: self.offset) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let pokemons):
-                    self.pokemons.append(contentsOf: pokemons.results)
-                    self.offset += 20
-                    self.isLoading = false
-                    if pokemons.count < self.offset {
-                        self.isFinished = true
-                    }
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
+        DispatchQueue.main.async {
+            self.isLoading = true
         }
         
+        do {
+            let pokemons = try await PokemonService.instance.getPokemonList(offset: offset)
+            DispatchQueue.main.async {
+                self.pokemons.append(contentsOf: pokemons.results)
+                self.offset += 20
+                self.isLoading = false
+                if pokemons.count < self.offset {
+                    self.isFinished = true
+                }
+            }
+        } catch let error {
+            DispatchQueue.main.async {
+                self.isLoading = false
+            }
+            print("Error on loadMoreContent: \(error)")
+        }
     }
 }

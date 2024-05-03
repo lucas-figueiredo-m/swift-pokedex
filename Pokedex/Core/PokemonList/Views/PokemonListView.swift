@@ -29,8 +29,8 @@ struct PokemonListView: View {
                             .frame(maxWidth: .infinity, maxHeight: 50)
                             .foregroundColor(.black)
                             .foregroundColor(.red)
-                            .onAppear {
-                                viewModel.loadMoreContent()
+                            .task {
+                                await viewModel.loadMoreContent()
                             }
                     }
                 }

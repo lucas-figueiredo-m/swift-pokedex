@@ -32,27 +32,7 @@ struct PokemonMovesView: View {
     }
 }
 
-let moves: [PokemonMove] = [
-    PokemonMove(
-        move: NamedAPIResource(
-            name: "razor-wind",
-            url: ""
-        )
-    ),
-    PokemonMove(
-        move: NamedAPIResource(
-            name: "swords-dance",
-            url: ""
-        )
-    ),
-    PokemonMove(
-        move: NamedAPIResource(
-            name: "cut",
-            url: ""
-        )
-    )
-    
-]
+let moves = DevPreview.pokemon.moves
 
 #Preview("PokemonMovesView", traits: .sizeThatFitsLayout) {
     PokemonMovesView(moves: moves)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-let rowSpacing: CGFloat = 10
+let rowSpacing: CGFloat = 4
 let columns = [GridItem(.flexible(), spacing: rowSpacing), GridItem(.flexible(), spacing: rowSpacing)]
 
 let colorBackground: Color = Color("ColorBackground")

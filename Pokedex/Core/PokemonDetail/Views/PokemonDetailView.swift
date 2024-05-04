@@ -8,24 +8,25 @@
 import SwiftUI
 
 struct PokemonDetailView: View {
-    @StateObject private var viewModel: PokemonDetailViewModel
-    
-    init(detailUrl: String) {
-        _viewModel = StateObject(wrappedValue: PokemonDetailViewModel(detailUrl: detailUrl))
-    }
+    var pokemon: PokemonModel
+//    @StateObject private var viewModel: PokemonDetailViewModel
+//    
+//    init(detailUrl: String) {
+//        _viewModel = StateObject(wrappedValue: PokemonDetailViewModel(detailUrl: detailUrl))
+//    }
     
     var body: some View {
         ZStack(alignment: .leading) {
             VStack {
                 ScrollView() {
                     VStack() {
-                        PokemonThumbnail(thumbnail: viewModel.pokemon.sprites.other.officialArtwork.front_default)
+                        PokemonThumbnail(thumbnail: pokemon.sprites.other.officialArtwork.front_default)
                         
-                        PokemonStatsView(stats: viewModel.pokemon.stats)
+                        PokemonStatsView(stats: pokemon.stats)
                         
-                        PokemonAbilitiesView(abilities: viewModel.pokemon.abilities)
+//                        PokemonAbilitiesView(abilities: pokemon.abilities)
                         
-                        PokemonMovesView(moves: viewModel.pokemon.moves)
+//                        PokemonMovesView(moves: pokemon.moves)
                         
                         
                     }
@@ -34,11 +35,13 @@ struct PokemonDetailView: View {
                 }
             }
         }
-        .navigationTitle(viewModel.pokemon.capitalizedName)
+        .navigationTitle(pokemon.capitalizedName)
         .background(colorBackground)
     }
 }
 
+let pokemonItem = DevPreview.pokemon
+
 #Preview {
-    PokemonDetailView(detailUrl: "https://pokeapi.co/api/v2/stat/1/")
+    PokemonDetailView(pokemon: pokemonItem)
 }

@@ -19,7 +19,7 @@ class NetworkClientBuilder {
         self.baseURL = baseURL
     }
     
-    func anotherGet<ResponseType: Codable>(path: String) async throws -> ResponseType {
+    func get<ResponseType: Codable>(path: String) async throws -> ResponseType {
         guard let url = URL(string: path) else {
             throw NetError.invalidUrl
         }

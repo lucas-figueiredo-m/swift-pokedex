@@ -10,7 +10,7 @@ import SwiftUI
 struct PokemonAbilitiesView: View {
     let abilities: [PokemonAbility]
     var body: some View {
-        LazyVStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: 6) {
             Text("Abilities")
             ForEach(abilities) { ability in
                 HStack {
@@ -25,23 +25,7 @@ struct PokemonAbilitiesView: View {
     }
 }
 
-let abilities: [PokemonAbility] = [
-    PokemonAbility(
-        is_hidden: false,
-        slot: 0,
-        ability: NamedAPIResource(
-            name: "overgrow", url: ""
-        )
-    ),
-    PokemonAbility(
-        is_hidden: false,
-        slot: 0,
-        ability: NamedAPIResource(
-            name: "chlorophyll", url: ""
-        )
-    )
-    
-]
+let abilities = DevPreview.pokemon.abilities
 
 #Preview("PokemonAbilitiesView", traits: .sizeThatFitsLayout) {
     PokemonAbilitiesView(abilities: abilities)

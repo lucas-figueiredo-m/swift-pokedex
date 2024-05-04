@@ -6,22 +6,25 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PokemonThumbnail: View {
     let thumbnail: String
     var body: some View {
-        AsyncImage(url: URL(string: thumbnail)) {image in
-            image.image?.resizable().scaledToFill()
-        }
-        .frame(width: 250, height: 250)
-        .padding()
-        .background(.white)
-        .clipShape(Circle())
+        KFImage(URL(string: thumbnail))
+            .resizable()
+            .scaledToFit()
+            .frame(width: 250, height: 250)
+            .padding()
+            .background(.white)
+            .clipShape(Circle())
     }
 }
 
+let thumbnail = DevPreview.pokemon.sprites.other.officialArtwork.front_default
+
 #Preview("PokemonThumbnail", traits: .sizeThatFitsLayout) {
-    PokemonThumbnail(thumbnail: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png")
+    PokemonThumbnail(thumbnail: thumbnail)
         .padding()
         .background(colorBackground)
 }

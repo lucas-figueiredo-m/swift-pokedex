@@ -6,38 +6,43 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct PokemonCardView: View {
-    @State var pokemon: PokemonModel = PokemonModel(id: 0, name: "", height: 0, is_default: false, order: 0, weight: 0, abilities: [], moves: [], sprites: PokemonSprites(other: OtherSprites(officialArtwork: OfficialArtworkSprite(front_default: ""))), stats: [], types: [])
-    let detailUrl: String
+     var pokemon: PokemonModel
     
     var body: some View {
         HStack (alignment: .center, spacing: 6) {
-            Text("#\(pokemon.id)")
-            Text(pokemon.capitalizedName)
+            VStack(alignment: .leading) {
+                Text("#\(pokemon.id)")
+                    .font(.footnote)
+                    .fontWeight(.bold)
+                    .foregroundStyle(.gray)
+                Text(pokemon.capitalizedName)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .foregroundStyle(.black)
+            }
+            .padding(.leading)
             
             Spacer()
             
-            AsyncImage(url: URL(string: pokemon.sprites.other.officialArtwork.front_default)) {image in
-                image.image?.resizable().scaledToFill()
-            }
-                .frame(width: 75, height: 75)
+            KFImage(URL(string: pokemon.sprites.other.officialArtwork.front_default))
+                .resizable()
+                .scaledToFill()
+                .frame(width: 60, height: 60)
+                .padding(.trailing)
+                .padding(.vertical)
         }
-        .onAppear {
-            PokemonService.instance.getPokemonDetail(path: detailUrl) { result in
-                switch result {
-                case .success(let pokemon):
-                    self.pokemon = pokemon
-                case .failure(let error):
-                    print(error.localizedDescription)
-                }
-            }
-            
-        }
+        .background(.white)
+        .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
-//#Preview ("PokemonCardView", traits: .sizeThatFitsLayout) {
-//    PokemonCardView()
-//        .padding()
-//}
+let pokemon = DevPreview.pokemon
+
+#Preview ("PokemonCardView", traits: .sizeThatFitsLayout) {
+    PokemonCardView(pokemon: pokemon)
+        .padding()
+        .background(colorBackground)
+}

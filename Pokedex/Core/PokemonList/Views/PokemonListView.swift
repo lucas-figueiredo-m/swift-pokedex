@@ -10,33 +10,34 @@ import SwiftUI
 struct PokemonListView: View {
     @StateObject var viewModel = PokemonListViewModel()
     
-    let columns = [GridItem(.flexible(), spacing: rowSpacing), GridItem(.flexible(), spacing: rowSpacing)]
-    
     var body: some View {
         NavigationStack {
-            VStack {
-                List {
-                    ForEach(viewModel.searchResult) { pokemon in
+            ScrollView {
+                LazyVGrid(columns: columns) {
+                    ForEach(viewModel.pokemons) { pokemon in
                         NavigationLink {
-                            PokemonDetailView(detailUrl: pokemon.url)
+                            LazyNavigationView(PokemonDetailView(pokemon: pokemon))
                         } label: {
-                            PokemonCardView(detailUrl: pokemon.url)
+                            PokemonCardView(pokemon: pokemon)
                         }
-                        
-                    }
-                    if !viewModel.isFinished {
-                        ProgressView()
-                            .frame(maxWidth: .infinity, maxHeight: 50)
-                            .foregroundColor(.black)
-                            .foregroundColor(.red)
-                            .task {
-                                await viewModel.loadMoreContent()
-                            }
                     }
                 }
                 
+                if !viewModel.isFinished {
+                    LazyVStack {
+                        ProgressView()
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 16)
+                            .foregroundColor(.black)
+                            .background(Color(UIColor.lightGray))
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .task {
+                                await viewModel.loadMoreContent()
+                            }                        
+                    }
+                }
             }
-            
+            .background(colorBackground)
             .navigationTitle("Pokemons")
         }
         .searchable(text: $viewModel.searchText)

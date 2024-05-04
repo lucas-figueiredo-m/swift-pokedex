@@ -9,14 +9,14 @@ import Foundation
 
 
 class PokemonListViewModel: ObservableObject {
-    @Published var pokemons: [NamedAPIResource] = []
+    @Published var pokemons: [PokemonModel] = []
     @Published var isLoading = false
     @Published var isFinished = false
     @Published var isStarting = true
     @Published var offset: Int = 0
     @Published var searchText = ""
     
-    var searchResult: [NamedAPIResource] {
+    var searchResult: [PokemonModel] {
         if searchText.isEmpty {
             return pokemons
         } else {
@@ -34,7 +34,7 @@ class PokemonListViewModel: ObservableObject {
         do {
             let pokemons = try await PokemonService.instance.getPokemonList(offset: offset)
             DispatchQueue.main.async {
-                self.pokemons = pokemons.results
+                self.pokemons = pokemons.sorted(by: { $0.id < $1.id })
                 self.offset += 20
                 self.isStarting = false
             }
@@ -54,12 +54,13 @@ class PokemonListViewModel: ObservableObject {
         do {
             let pokemons = try await PokemonService.instance.getPokemonList(offset: offset)
             DispatchQueue.main.async {
-                self.pokemons.append(contentsOf: pokemons.results)
+                self.pokemons.append(contentsOf: pokemons.sorted(by: { $0.id < $1.id }))
                 self.offset += 20
                 self.isLoading = false
-                if pokemons.count < self.offset {
-                    self.isFinished = true
-                }
+                // TODO: implement on list end
+//                if pokemons.count < self.offset {
+//                    self.isFinished = true
+//                }
             }
         } catch let error {
             DispatchQueue.main.async {

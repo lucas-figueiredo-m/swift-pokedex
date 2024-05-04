@@ -34,57 +34,7 @@ struct PokemonStatsView: View {
     }
 }
 
-let stats: [PokemonStats] = [
-    PokemonStats(
-        stat: NamedAPIResource(
-            name: "hp",
-            url: ""
-        ),
-        effort: 0,
-        base_stat: 39
-    ),
-    PokemonStats(
-        stat: NamedAPIResource(
-            name: "attack",
-            url: ""
-        ),
-        effort: 0,
-        base_stat: 39
-    ),
-    PokemonStats(
-        stat: NamedAPIResource(
-            name: "defense",
-            url: ""
-        ),
-        effort: 0,
-        base_stat: 39
-    ),
-    PokemonStats(
-        stat: NamedAPIResource(
-            name: "special-attack",
-            url: ""
-        ),
-        effort: 0,
-        base_stat: 39
-    ),
-    PokemonStats(
-        stat: NamedAPIResource(
-            name: "spacial-defense",
-            url: ""
-        ),
-        effort: 0,
-        base_stat: 39
-    ),
-    PokemonStats(
-        stat: NamedAPIResource(
-            name: "speed",
-            url: ""
-        ),
-        effort: 0,
-        base_stat: 39
-    ),
-    
-]
+let stats = DevPreview.pokemon.stats
 
 #Preview("PokemonStatsView", traits: .sizeThatFitsLayout) {
     PokemonStatsView(stats: stats)

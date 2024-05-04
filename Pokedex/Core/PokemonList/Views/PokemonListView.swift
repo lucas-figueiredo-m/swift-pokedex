@@ -14,7 +14,7 @@ struct PokemonListView: View {
         NavigationStack {
             ScrollView {
                 LazyVGrid(columns: columns) {
-                    ForEach(viewModel.pokemons) { pokemon in
+                    ForEach(viewModel.searchResult) { pokemon in
                         NavigationLink {
                             LazyNavigationView(PokemonDetailView(pokemon: pokemon))
                         } label: {

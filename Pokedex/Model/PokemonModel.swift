@@ -74,7 +74,18 @@ struct PokemonStats: Codable, Identifiable {
     let effort: Int
     let base_stat: Double
     var statName: String {
-        return stat.capitalizedName
+        let name = stat.capitalizedName.replacingOccurrences(of: "-", with: " ")
+        
+        let splitted = name.split(separator: " ")
+        
+        if splitted.count == 2 {
+            let firstWord = String(splitted[0]).getSubstringIn(start: 0, end: 2)
+            let secondWord = String(splitted[1]).getSubstringIn(start: 0, end: 3)
+            
+            return "\(firstWord) \(secondWord)"
+        }
+        
+        return name
     }
 }
 

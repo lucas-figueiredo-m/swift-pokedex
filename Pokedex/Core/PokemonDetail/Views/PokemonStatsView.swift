@@ -12,24 +12,32 @@ struct PokemonStatsView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Stats")
-            LazyVGrid(columns: columns, spacing: rowSpacing) {
-                ForEach(stats) { stat in
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Text(stat.statName)
-                            Text("\(stat.base_stat)")
-                        }
-                        Spacer()
-                        
+            ScrollView {
+                VStack(spacing: 16) {
+                    ForEach(stats) { stat in
+                        StatProgressView(statName: stat.statName, value: stat.base_stat)
                     }
-                    .frame(height: 60)
-                    .background(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    
                 }
+                //            LazyVGrid(columns: columns, spacing: rowSpacing) {
+                //                ForEach(stats) { stat in
+                //                    HStack {
+                //                        Spacer()
+                //                        VStack {
+                //                            Text(stat.statName)
+                //                            Text("\(stat.base_stat)")
+                //                        }
+                //                        Spacer()
+                //                        
+                //                    }
+                //                    .frame(height: 60)
+                //                    .background(.white)
+                //                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                //                }
+                //            }
+                
+                
             }
-            
         }
     }
 }

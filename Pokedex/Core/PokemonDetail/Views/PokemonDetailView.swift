@@ -6,42 +6,65 @@
 //
 
 import SwiftUI
+import PagerTabStripView
 
 struct PokemonDetailView: View {
     var pokemon: PokemonModel
-//    @StateObject private var viewModel: PokemonDetailViewModel
-//    
-//    init(detailUrl: String) {
-//        _viewModel = StateObject(wrappedValue: PokemonDetailViewModel(detailUrl: detailUrl))
-//    }
+    //    @StateObject private var viewModel: PokemonDetailViewModel
+    //
+    //    init(detailUrl: String) {
+    //        _viewModel = StateObject(wrappedValue: PokemonDetailViewModel(detailUrl: detailUrl))
+    //    }
+    
+    init(pokemon: PokemonModel) {
+        self.pokemon = pokemon
+    }
     
     var body: some View {
-        ZStack(alignment: .leading) {
+        VStack {
             VStack {
-                ScrollView() {
-                    VStack() {
-                        PokemonThumbnail(thumbnail: pokemon.sprites.other.officialArtwork.front_default)
-                        
+                
+                PokemonDetailHeaderView(pokemon: pokemon)
+                    .padding(.horizontal)
+                PokemonThumbnail(thumbnail: pokemon.sprites.other.officialArtwork.front_default)
+                    .zIndex(3)
+                    .offset(y: 40)
+                    .padding(.top, -40)
+                VStack() {
+                    
+                    PagerTabStripView {
                         PokemonStatsView(stats: pokemon.stats)
-                        
-//                        PokemonAbilitiesView(abilities: pokemon.abilities)
-                        
-//                        PokemonMovesView(moves: pokemon.moves)
-                        
+                            .pagerTabItem(tag: 1) {
+                                Text("About")
+                            }
+                            .padding()
+                        PokemonStatsView(stats: pokemon.stats)
+                            .pagerTabItem(tag: 2) {
+                                Text("Base Stats")
+                            }
+                        PokemonStatsView(stats: pokemon.stats)
+                            .pagerTabItem(tag: 3) {
+                                Text("Evolutions")
+                            }
                         
                     }
-                    .padding()
+                    
+                    Spacer()
                     
                 }
+                .padding()
+                .background(.white)
+                .clipShape(CustomShape())
             }
+            .ignoresSafeArea(.all, edges: .bottom)
+            .background(pokemon.backgroundColor)
         }
         .navigationTitle(pokemon.capitalizedName)
-        .background(colorBackground)
+        .navigationBarTitleDisplayMode(.inline)
+        .background(.white)
     }
 }
 
-let pokemonItem = DevPreview.pokemon
-
 #Preview {
-    PokemonDetailView(pokemon: pokemonItem)
+    PokemonDetailView(pokemon: DevPreview.pokemon)
 }

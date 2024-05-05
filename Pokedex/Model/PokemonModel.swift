@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct PokemonModel: Codable, Identifiable {
     let id: Int
@@ -15,6 +16,7 @@ struct PokemonModel: Codable, Identifiable {
     let order: Int
     let weight: Int
     let abilities: [PokemonAbility]
+    
     //    let forms: Any
     //    let gamo_indices: Any
     //    let held_items: Any
@@ -28,6 +30,10 @@ struct PokemonModel: Codable, Identifiable {
     let types: [PokemonType]
     var capitalizedName: String {
         return name.capitalized
+    }
+    
+    var backgroundColor: Color {
+        return pokemonBackgroundColor[types.first?.type.name ?? "unknown"] ?? colorBackground
     }
 }
 
@@ -66,7 +72,7 @@ struct PokemonStats: Codable, Identifiable {
     }
     let stat: NamedAPIResource
     let effort: Int
-    let base_stat: Int
+    let base_stat: Double
     var statName: String {
         return stat.capitalizedName
     }

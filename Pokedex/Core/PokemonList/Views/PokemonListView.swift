@@ -22,6 +22,7 @@ struct PokemonListView: View {
                         }
                     }
                 }
+                .padding(.horizontal)
                 
                 if !viewModel.isFinished {
                     LazyVStack {
@@ -37,9 +38,10 @@ struct PokemonListView: View {
                     }
                 }
             }
-            .background(colorBackground)
+            .background(.white)
             .navigationTitle("Pokemons")
         }
+        .tint(.white)
         .searchable(text: $viewModel.searchText)
     }
 }

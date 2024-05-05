@@ -34,7 +34,7 @@ struct PokemonCardView: View {
                 .padding(.trailing)
                 .padding(.vertical)
         }
-        .background(.white)
+        .background(pokemon.backgroundColor)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }

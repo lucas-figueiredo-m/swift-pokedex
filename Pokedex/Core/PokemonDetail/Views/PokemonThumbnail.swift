@@ -14,10 +14,8 @@ struct PokemonThumbnail: View {
         KFImage(URL(string: thumbnail))
             .resizable()
             .scaledToFit()
-            .frame(width: 250, height: 250)
-            .padding()
-            .background(.white)
-            .clipShape(Circle())
+            .frame(width: 225, height: 225)
+//            .padding()
     }
 }
 

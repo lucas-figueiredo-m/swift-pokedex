@@ -24,14 +24,27 @@ struct PokemonAboutView: View {
     }
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 24) {
-            Text(pokemon.specie.pokemonDescription)
-            VStack(alignment: .leading, spacing: 12) {
-                PokemonAboutItemView(title: "Species", content: pokemon.specie.genera)
-                PokemonAboutItemView(title: "Egg Groups", content: pokemon.specie.eggGroups)
-                PokemonAboutItemView(title: "Height", content: pokemon.data.height.toHeightString())
-                PokemonAboutItemView(title: "Weight", content: pokemon.data.weight.toWeightString())
-                PokemonAboutItemView(title: "Abilities", content: firstAbilities)
+        ScrollView(showsIndicators: false) {
+            VStack(alignment: .leading, spacing: 24) {
+                Text(pokemon.specie.pokemonDescription)
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Attributes")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding(.bottom, 4)
+                    PokemonAboutItemView(title: "Height", content: pokemon.data.height.toHeightString())
+                    PokemonAboutItemView(title: "Weight", content: pokemon.data.weight.toWeightString())
+                    PokemonAboutItemView(title: "Abilities", content: firstAbilities)
+                }
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Characteristics")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                        .padding(.bottom, 4)
+                    PokemonAboutItemView(title: "Species", content: pokemon.specie.genera)
+                    PokemonAboutItemView(title: "Egg Groups", content: pokemon.specie.eggGroups)
+                    PokemonAboutItemView(title: "Habitat", content: pokemon.specie.habitat)
+                }
             }
         }
     }

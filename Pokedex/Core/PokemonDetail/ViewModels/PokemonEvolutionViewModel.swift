@@ -20,7 +20,35 @@ class PokemonEvolutionViewModel {
         buildPokemonEvolutions()
     }
     
-    func buildImageUrl (url: String) -> String? {
+    private func handleTriggerText(detail: EvolutionDetail) -> String {
+        if detail.trigger.name == "use-item" {
+            guard let trigger = detail.item else {
+                return detail.trigger.capitalizedName.removeDash()
+            }
+            
+            return trigger.capitalizedName.removeDash()
+        }
+        
+        if detail.trigger.name == "level-up" {
+            guard let minLevel = detail.min_level else {
+                return detail.trigger.capitalizedName.removeDash()
+            }
+            
+            return "Lvl \(minLevel)"
+        }
+        
+        if detail.trigger.name == "trade" {
+            guard let heldItem = detail.held_item else {
+                return detail.trigger.capitalizedName.removeDash()
+            }
+            
+            return "Trade holding \(heldItem.capitalizedName.removeDash())"
+        }
+        
+        return detail.trigger.capitalizedName.removeDash()
+    }
+    
+    private func buildImageUrl (url: String) -> String? {
         do {
             let regex  = try NSRegularExpression(pattern: "\\/\\d{1,}\\/")
             let results = regex.matches(in: url, range: NSRange(url.startIndex..., in: url))
@@ -43,7 +71,7 @@ class PokemonEvolutionViewModel {
         }
     }
     
-    func buildPokemonEvolutionsRecursion(chain: ChainLink) -> [Evolutions] {
+    private func buildPokemonEvolutionsRecursion(chain: ChainLink) -> [Evolutions] {
         var tempEvolutions: [Evolutions] = []
         
         let currentPokemon = BasicPokemonInfo(
@@ -59,7 +87,7 @@ class PokemonEvolutionViewModel {
             let evolution = Evolutions(
                 from: currentPokemon,
                 to: nextPokemon,
-                trigger: evolution.evolution_details[0].trigger.capitalizedName
+                trigger: handleTriggerText(detail: evolution.evolution_details[0])
             )
             tempEvolutions.append(evolution)
         }
@@ -71,7 +99,7 @@ class PokemonEvolutionViewModel {
         return tempEvolutions
     }
     
-    func buildPokemonEvolutions() {
+    private func buildPokemonEvolutions() {
         self.evolutions = buildPokemonEvolutionsRecursion(chain: pokemon.evolution.chain)
     }
     

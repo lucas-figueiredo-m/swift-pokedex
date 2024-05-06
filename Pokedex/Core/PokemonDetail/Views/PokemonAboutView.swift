@@ -27,11 +27,13 @@ struct PokemonAboutView: View {
         ScrollView(showsIndicators: false) {
             VStack(alignment: .leading, spacing: 24) {
                 Text(pokemon.specie.pokemonDescription)
+                    .foregroundStyle(.black)
                 VStack(alignment: .leading, spacing: 12) {
                     Text("Attributes")
                         .font(.title2)
                         .fontWeight(.semibold)
                         .padding(.bottom, 4)
+                        .foregroundStyle(.black)
                     PokemonAboutItemView(title: "Height", content: pokemon.data.height.toHeightString())
                     PokemonAboutItemView(title: "Weight", content: pokemon.data.weight.toWeightString())
                     PokemonAboutItemView(title: "Abilities", content: firstAbilities)
@@ -41,6 +43,7 @@ struct PokemonAboutView: View {
                         .font(.title2)
                         .fontWeight(.semibold)
                         .padding(.bottom, 4)
+                        .foregroundStyle(.black)
                     PokemonAboutItemView(title: "Species", content: pokemon.specie.genera)
                     PokemonAboutItemView(title: "Egg Groups", content: pokemon.specie.eggGroups)
                     PokemonAboutItemView(title: "Habitat", content: pokemon.specie.habitat)

@@ -14,6 +14,7 @@ struct PokemonSpeciesModel: Codable {
     let flavor_text_entries_temp: [PokemonFlavorText]
     let isLegendary: Bool
     let isMythical: Bool
+    let evolutionChain: UnamedAPIResourse
     
     enum CodingKeys: String, CodingKey {
         case egg_groups_temp = "egg_groups"
@@ -22,6 +23,7 @@ struct PokemonSpeciesModel: Codable {
         case flavor_text_entries_temp = "flavor_text_entries"
         case isLegendary = "is_legendary"
         case isMythical = "is_mythical"
+        case evolutionChain = "evolution_chain"
     }
     
     var eggGroups: String {

@@ -11,4 +11,5 @@ struct PokemonModel: Codable, Identifiable {
     var id = UUID().uuidString
     let data: PokemonDataModel
     let specie: PokemonSpeciesModel
+    let evolution: PokemonEvolution
 }

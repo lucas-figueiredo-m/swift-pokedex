@@ -23,7 +23,8 @@ final class PokemonService {
                 group.addTask {
                     let pokemonDetail = try await self.getPokemonDetail(path: pokemonItem.url)
                     let pokemonSpecies: PokemonSpeciesModel = try await self.getPokemonResource(path: pokemonDetail.species.url)
-                    return PokemonModel(data: pokemonDetail, specie: pokemonSpecies)
+                    let pokemonEvolution: PokemonEvolution = try await self.getPokemonResource(path: pokemonSpecies.evolutionChain.url)
+                    return PokemonModel(data: pokemonDetail, specie: pokemonSpecies, evolution: pokemonEvolution)
                 }
             }
             

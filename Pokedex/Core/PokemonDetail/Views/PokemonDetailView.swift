@@ -31,16 +31,22 @@ struct PokemonDetailView: View {
                         PokemonAboutView(pokemon: pokemon)
                             .pagerTabItem(tag: 1) {
                                 Text("About")
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
                             }
                             .padding()
                         PokemonStatsView(stats: pokemon.data.stats)
                             .pagerTabItem(tag: 2) {
                                 Text("Base Stats")
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
                             }
                             .padding()
-                        PokemonStatsView(stats: pokemon.data.stats)
+                        PokemonEvolutionsView(pokemon: pokemon)
                             .pagerTabItem(tag: 3) {
                                 Text("Evolutions")
+                                    .font(.headline)
+                                    .foregroundStyle(.black)
                             }
                             .padding()
                         
@@ -59,7 +65,9 @@ struct PokemonDetailView: View {
         .navigationTitle(pokemon.data.capitalizedName)
         .navigationBarTitleDisplayMode(.inline)
         .background(.white)
+        .preferredColorScheme(.dark)
     }
+        
 }
 
 #Preview {

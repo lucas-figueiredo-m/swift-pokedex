@@ -14,6 +14,8 @@ let statMax: Double = 200
 
 let pokemonAbout = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam lobortis dapibus ligula ut elementum. Maecenas quis laoreet ex. Pellentesque vel est vitae diam eleifend maximus vel vitae libero. Nulla pulvinar lacus quam, at pretium ante laoreet eget. Suspendisse nec urna."
 
+let defaultPokemonImage = ""
+
 let colorBackground: Color = Color("ColorBackground")
 let colorFire: Color = Color("ColorFire")
 let colorWater: Color = Color("ColorWater")

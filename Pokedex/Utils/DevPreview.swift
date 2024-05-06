@@ -12,7 +12,79 @@ import Foundation
 
 class DevPreview {
     
-    static let pokemon = PokemonModel(data: pokemonData, specie: pokemonSpecie)
+    static let pokemon = PokemonModel(
+        data: pokemonData,
+        specie: pokemonSpecie,
+        evolution: pokemonEvolution
+    )
+    
+    static let pokemonEvolution = PokemonEvolution(chain: squirtleChain)
+    
+    static let squirtleChain = ChainLink(
+        species: NamedAPIResource(
+            name: "squirtle",
+            url: "https://pokeapi.co/api/v2/pokemon-species/7/"
+        ),
+        evolution_details: [],
+        evolves_to: [wartortleChain]
+    )
+    
+    static let evolution = PokemonEvolutionViewModel(pokemon: pokemon)
+    
+    static let wartortleChain = ChainLink(
+        species: NamedAPIResource(name: "wartortle", url: "https://pokeapi.co/api/v2/pokemon-species/8/"),
+        evolution_details: [
+            EvolutionDetail(
+                item: nil,
+                trigger: NamedAPIResource(name: "level-up", url: "https://pokeapi.co/api/v2/evolution-trigger/1/"),
+                gender: nil,
+                held_item: nil,
+                known_move: nil,
+                known_move_type: nil,
+                location: nil,
+                min_level: 16,
+                min_happiness: nil,
+                min_beauty: nil,
+                min_affection: nil,
+                needs_overworld_rain: false,
+                party_species: nil,
+                party_type: nil,
+                relative_physical_stats: nil,
+                time_of_day: "",
+                trade_species: nil,
+                turn_upside_down: false
+            )
+        ],
+        evolves_to: [blastoiseChain]
+    )
+    
+    static let blastoiseChain = ChainLink(
+        species: NamedAPIResource(name: "blastoise", url: "https://pokeapi.co/api/v2/pokemon-species/9/"),
+        evolution_details: [
+            EvolutionDetail(
+                item: nil,
+                trigger: NamedAPIResource(name: "level-up", url: "https://pokeapi.co/api/v2/evolution-trigger/1/"),
+                gender: nil,
+                held_item: nil,
+                known_move: nil,
+                known_move_type: nil,
+                location: nil,
+                min_level: 36,
+                min_happiness: nil,
+                min_beauty: nil,
+                min_affection: nil,
+                needs_overworld_rain: false,
+                party_species: nil,
+                party_type: nil,
+                relative_physical_stats: nil,
+                time_of_day: "",
+                trade_species: nil,
+                turn_upside_down: false
+            )
+        ],
+        evolves_to: []
+    )
+    
     
     static let pokemonSpecie = PokemonSpeciesModel(
         egg_groups_temp: [
@@ -44,7 +116,8 @@ class DevPreview {
             
         ],
         isLegendary: false,
-        isMythical: false
+        isMythical: false,
+        evolutionChain: UnamedAPIResourse(url: "https://pokeapi.co/api/v2/evolution-chain/3/")
     )
     
     static let pokemonData = PokemonDataModel(

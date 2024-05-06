@@ -42,7 +42,7 @@ struct PokemonStatsView: View {
     }
 }
 
-let stats = DevPreview.pokemon.stats
+let stats = DevPreview.pokemon.data.stats
 
 #Preview("PokemonStatsView", traits: .sizeThatFitsLayout) {
     PokemonStatsView(stats: stats)

@@ -12,7 +12,42 @@ import Foundation
 
 class DevPreview {
     
-    static let pokemon = PokemonModel(
+    static let pokemon = PokemonModel(data: pokemonData, specie: pokemonSpecie)
+    
+    static let pokemonSpecie = PokemonSpeciesModel(
+        egg_groups_temp: [
+            NamedAPIResource(name: "monster", url: "https://pokeapi.co/api/v2/egg-group/1/"),
+            NamedAPIResource(name: "water1", url: "https://pokeapi.co/api/v2/egg-group/2/")
+        ],
+        genera_temp: [
+            PokemonGenus(
+            genus: "Pokémon Minitortue",
+            language: NamedAPIResource(name: "fr", url: "https://pokeapi.co/api/v2/language/5/")
+        ),
+            PokemonGenus(
+                genus: "Tiny Turtle Pokémon",
+                language: NamedAPIResource(name: "en", url: "https://pokeapi.co/api/v2/language/9/")
+            )
+        ],
+        habitat_temp: NamedAPIResource(name: "waters-edge", url: "https://pokeapi.co/api/v2/pokemon-habitat/9/"),
+        flavor_text_entries_temp: [
+            PokemonFlavorText(
+                flavor_text: "Shoots water at\nprey while in the\nwater. Withdraws into\nits shell when in\ndanger.",
+                language: NamedAPIResource(name: "en", url: "https://pokeapi.co/api/v2/language/9/"),
+                version: NamedAPIResource(name: "yellow", url: "https://pokeapi.co/api/v2/version/3/")
+            ),
+            PokemonFlavorText(
+                flavor_text: "SQUIRTLE’s shell is not merely used\nfor protection.\nThe shell’s rounded shape and thegrooves on its surface help minimize\nresistance in water, enabling this\nPOKéMON to swim at high speeds.",
+                language: NamedAPIResource(name: "en", url: "https://pokeapi.co/api/v2/language/9/"),
+                version: NamedAPIResource(name: "ruby", url: "https://pokeapi.co/api/v2/version/7/")
+            ),
+            
+        ],
+        isLegendary: false,
+        isMythical: false
+    )
+    
+    static let pokemonData = PokemonDataModel(
         id: 7,
         name: "squirtle",
         height: 5,
@@ -41,6 +76,7 @@ class DevPreview {
                     front_default: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png")
             )
         ),
+        species: NamedAPIResource(name: "squirtle", url: "https://pokeapi.co/api/v2/pokemon-species/7/"),
         stats: [
             PokemonStats(stat: NamedAPIResource(name: "hp", url: ""), effort: 0, base_stat: 44),
             PokemonStats(stat: NamedAPIResource(name: "attack", url: ""), effort: 0, base_stat: 48),

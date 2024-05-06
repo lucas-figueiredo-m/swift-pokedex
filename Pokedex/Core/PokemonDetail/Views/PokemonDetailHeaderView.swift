@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PokemonDetailHeaderView: View {
-    let pokemon: PokemonModel
+    let pokemon: PokemonDataModel
     var body: some View {
         VStack {
             HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
@@ -38,7 +38,7 @@ struct PokemonDetailHeaderView: View {
 }
 
 #Preview("PokemonDetailHeaderView", traits: .sizeThatFitsLayout) {
-    PokemonDetailHeaderView(pokemon: DevPreview.pokemon)
-        .background(DevPreview.pokemon.backgroundColor)
+    PokemonDetailHeaderView(pokemon: DevPreview.pokemon.data)
+        .background(DevPreview.pokemon.data.backgroundColor)
         .padding()
 }

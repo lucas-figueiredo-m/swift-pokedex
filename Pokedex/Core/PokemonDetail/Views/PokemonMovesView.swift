@@ -32,7 +32,7 @@ struct PokemonMovesView: View {
     }
 }
 
-let moves = DevPreview.pokemon.moves
+let moves = DevPreview.pokemon.data.moves
 
 #Preview("PokemonMovesView", traits: .sizeThatFitsLayout) {
     PokemonMovesView(moves: moves)

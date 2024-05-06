@@ -22,7 +22,8 @@ final class PokemonService {
             for pokemonItem in pokemonList.results {
                 group.addTask {
                     let pokemonDetail = try await self.getPokemonDetail(path: pokemonItem.url)
-                    return pokemonDetail
+                    let pokemonSpecies: PokemonSpeciesModel = try await self.getPokemonResource(path: pokemonDetail.species.url)
+                    return PokemonModel(data: pokemonDetail, specie: pokemonSpecies)
                 }
             }
             
@@ -33,12 +34,16 @@ final class PokemonService {
             return pokemons
         }
     }
+    
+    func getPokemonResource<T: Codable>(path: String) async throws -> T {
+        return try await self.api.get(path: path)
+    }
 
-    func getPokemonDetail(path: String) async throws -> PokemonModel {
+    func getPokemonDetail(path: String) async throws -> PokemonDataModel {
         return try await self.api.get(path: path)
     }
     
-    func getPokemonDetail(path: String, completed: @escaping (Result<PokemonModel, NetError>) -> Void) {
+    func getPokemonDetail(path: String, completed: @escaping (Result<PokemonDataModel, NetError>) -> Void) {
         self.api.get(path: path, completed: completed)
     }
     

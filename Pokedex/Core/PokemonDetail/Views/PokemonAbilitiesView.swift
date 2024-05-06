@@ -25,7 +25,7 @@ struct PokemonAbilitiesView: View {
     }
 }
 
-let abilities = DevPreview.pokemon.abilities
+let abilities = DevPreview.pokemon.data.abilities
 
 #Preview("PokemonAbilitiesView", traits: .sizeThatFitsLayout) {
     PokemonAbilitiesView(abilities: abilities)

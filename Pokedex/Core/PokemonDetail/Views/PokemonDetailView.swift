@@ -10,11 +10,6 @@ import PagerTabStripView
 
 struct PokemonDetailView: View {
     var pokemon: PokemonModel
-    //    @StateObject private var viewModel: PokemonDetailViewModel
-    //
-    //    init(detailUrl: String) {
-    //        _viewModel = StateObject(wrappedValue: PokemonDetailViewModel(detailUrl: detailUrl))
-    //    }
     
     init(pokemon: PokemonModel) {
         self.pokemon = pokemon
@@ -24,28 +19,30 @@ struct PokemonDetailView: View {
         VStack {
             VStack {
                 
-                PokemonDetailHeaderView(pokemon: pokemon)
+                PokemonDetailHeaderView(pokemon: pokemon.data)
                     .padding(.horizontal)
-                PokemonThumbnail(thumbnail: pokemon.sprites.other.officialArtwork.front_default)
+                PokemonThumbnail(thumbnail: pokemon.data.sprites.other.officialArtwork.front_default)
                     .zIndex(3)
                     .offset(y: 40)
                     .padding(.top, -40)
                 VStack() {
                     
                     PagerTabStripView {
-                        PokemonStatsView(stats: pokemon.stats)
+                        PokemonAboutView(pokemon: pokemon)
                             .pagerTabItem(tag: 1) {
                                 Text("About")
                             }
                             .padding()
-                        PokemonStatsView(stats: pokemon.stats)
+                        PokemonStatsView(stats: pokemon.data.stats)
                             .pagerTabItem(tag: 2) {
                                 Text("Base Stats")
                             }
-                        PokemonStatsView(stats: pokemon.stats)
+                            .padding()
+                        PokemonStatsView(stats: pokemon.data.stats)
                             .pagerTabItem(tag: 3) {
                                 Text("Evolutions")
                             }
+                            .padding()
                         
                     }
                     
@@ -57,9 +54,9 @@ struct PokemonDetailView: View {
                 .clipShape(CustomShape())
             }
             .ignoresSafeArea(.all, edges: .bottom)
-            .background(pokemon.backgroundColor)
+            .background(pokemon.data.backgroundColor)
         }
-        .navigationTitle(pokemon.capitalizedName)
+        .navigationTitle(pokemon.data.capitalizedName)
         .navigationBarTitleDisplayMode(.inline)
         .background(.white)
     }

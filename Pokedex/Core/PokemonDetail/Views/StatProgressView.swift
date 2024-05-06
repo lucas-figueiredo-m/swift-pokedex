@@ -38,7 +38,7 @@ struct StatProgressView: View {
                     .fontWeight(.semibold)
                     .foregroundStyle(.gray.darker(by: 30))
             }
-            .frame(maxWidth: 150)
+            .frame(maxWidth: 120)
             
             ProgressView(value: value, total: statMax)
                 .tint(tintColor)

@@ -20,7 +20,7 @@ class PokemonListViewModel: ObservableObject {
         if searchText.isEmpty {
             return pokemons
         } else {
-            return pokemons.filter { $0.name.contains(searchText.lowercased()) }
+            return pokemons.filter { $0.data.name.contains(searchText.lowercased()) }
         }
     }
     
@@ -34,7 +34,7 @@ class PokemonListViewModel: ObservableObject {
         do {
             let pokemons = try await PokemonService.instance.getPokemonList(offset: offset)
             DispatchQueue.main.async {
-                self.pokemons = pokemons.sorted(by: { $0.id < $1.id })
+                self.pokemons = pokemons.sorted(by: { $0.data.id < $1.data.id })
                 self.offset += 20
                 self.isStarting = false
             }
@@ -54,7 +54,7 @@ class PokemonListViewModel: ObservableObject {
         do {
             let pokemons = try await PokemonService.instance.getPokemonList(offset: offset)
             DispatchQueue.main.async {
-                self.pokemons.append(contentsOf: pokemons.sorted(by: { $0.id < $1.id }))
+                self.pokemons.append(contentsOf: pokemons.sorted(by: { $0.data.id < $1.data.id }))
                 self.offset += 20
                 self.isLoading = false
                 // TODO: implement on list end

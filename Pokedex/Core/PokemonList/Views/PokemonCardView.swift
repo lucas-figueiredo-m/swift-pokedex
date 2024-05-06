@@ -14,11 +14,11 @@ struct PokemonCardView: View {
     var body: some View {
         HStack (alignment: .center, spacing: 6) {
             VStack(alignment: .leading) {
-                Text("#\(pokemon.id)")
+                Text("#\(pokemon.data.id)")
                     .font(.footnote)
                     .fontWeight(.bold)
                     .foregroundStyle(.gray)
-                Text(pokemon.capitalizedName)
+                Text(pokemon.data.capitalizedName)
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .foregroundStyle(.black)
@@ -27,22 +27,20 @@ struct PokemonCardView: View {
             
             Spacer()
             
-            KFImage(URL(string: pokemon.sprites.other.officialArtwork.front_default))
+            KFImage(URL(string: pokemon.data.sprites.other.officialArtwork.front_default))
                 .resizable()
                 .scaledToFill()
                 .frame(width: 60, height: 60)
                 .padding(.trailing)
                 .padding(.vertical)
         }
-        .background(pokemon.backgroundColor)
+        .background(pokemon.data.backgroundColor)
         .clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }
 
-let pokemon = DevPreview.pokemon
-
 #Preview ("PokemonCardView", traits: .sizeThatFitsLayout) {
-    PokemonCardView(pokemon: pokemon)
+    PokemonCardView(pokemon: DevPreview.pokemon)
         .padding()
         .background(colorBackground)
 }

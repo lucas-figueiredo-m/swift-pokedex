@@ -32,7 +32,7 @@ class NetworkClientBuilder {
             throw NetError.invalidResponse
         }
         
-        let payload: ResponseType = URLSession.shared.decode(data)
+        let payload: ResponseType = try URLSession.shared.decode(data)
         
         return payload
     }

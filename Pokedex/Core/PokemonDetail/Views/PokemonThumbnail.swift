@@ -19,7 +19,7 @@ struct PokemonThumbnail: View {
     }
 }
 
-let thumbnail = DevPreview.pokemon.sprites.other.officialArtwork.front_default
+let thumbnail = DevPreview.pokemon.data.sprites.other.officialArtwork.front_default
 
 #Preview("PokemonThumbnail", traits: .sizeThatFitsLayout) {
     PokemonThumbnail(thumbnail: thumbnail)

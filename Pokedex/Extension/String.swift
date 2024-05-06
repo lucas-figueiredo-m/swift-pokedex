@@ -22,7 +22,14 @@ extension String {
         let endIndex = self.index(self.startIndex, offsetBy: strEnd)
         
         return String(self[startIndex..<endIndex])
-        
-        
     }
+    
+    func removeDash() -> String {
+        return self.replacingOccurrences(of: "-", with: " ")
+    }
+    
+    func capitalizingFirstLetter() -> String {
+      return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+
 }

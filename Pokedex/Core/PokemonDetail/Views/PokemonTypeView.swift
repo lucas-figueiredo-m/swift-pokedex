@@ -24,7 +24,7 @@ struct PokemonTypeView: View {
 }
 
 #Preview("PokemonTypeView", traits: .sizeThatFitsLayout) {
-    PokemonTypeView(type: DevPreview.pokemon.types[0].typeName, backgroundColor: DevPreview.pokemon.backgroundColor)
+    PokemonTypeView(type: DevPreview.pokemon.data.types[0].typeName, backgroundColor: DevPreview.pokemon.data.backgroundColor)
         .padding()
-        .background(DevPreview.pokemon.backgroundColor)
+        .background(DevPreview.pokemon.data.backgroundColor)
 }

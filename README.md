@@ -5,9 +5,9 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/lucas-figueiredo-m/swift-pokedex?style=for-the-badge)
 
 <div align="center">
-  <img src="./screenshots/screenshot11.png" width="25%" height="25%" alt="print-app">
-  <img src="./screenshots/screenshot22.png" width="25%" height="25%" alt="print-app">
-  <img src="./screenshots/screenshot33.png" width="25%" height="25%" alt="print-app">
+  <img src="./screenshots/screenshot-1.png" width="25%" height="25%" alt="print-app">
+  <img src="./screenshots/screenshot-2.png" width="25%" height="25%" alt="print-app">
+  <img src="./screenshots/screenshot-3.png" width="25%" height="25%" alt="print-app">
 </div>
 
 > This project was built to practice SwiftUI skills, such as: UI design, networking, other APIs, etc

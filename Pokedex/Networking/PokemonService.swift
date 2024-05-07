@@ -21,7 +21,7 @@ final class PokemonService {
             
             for pokemonItem in pokemonList.results {
                 group.addTask {
-                    let pokemonDetail = try await self.getPokemonDetail(path: pokemonItem.url)
+                    let pokemonDetail: PokemonDataModel = try await self.getPokemonResource(path: pokemonItem.url)
                     let pokemonSpecies: PokemonSpeciesModel = try await self.getPokemonResource(path: pokemonDetail.species.url)
                     let pokemonEvolution: PokemonEvolution = try await self.getPokemonResource(path: pokemonSpecies.evolutionChain.url)
                     return PokemonModel(data: pokemonDetail, specie: pokemonSpecies, evolution: pokemonEvolution)
@@ -40,12 +40,12 @@ final class PokemonService {
         return try await self.api.get(path: path)
     }
 
-    func getPokemonDetail(path: String) async throws -> PokemonDataModel {
-        return try await self.api.get(path: path)
-    }
-    
-    func getPokemonDetail(path: String, completed: @escaping (Result<PokemonDataModel, NetError>) -> Void) {
-        self.api.get(path: path, completed: completed)
+    func getPokemonDetail(pokemonName: String) async throws -> PokemonModel {
+        let pokemonDetail: PokemonDataModel = try await self.getPokemonResource(path: "https://pokeapi.co/api/v2/pokemon/\(pokemonName)")
+        let pokemonSpecies: PokemonSpeciesModel = try await self.getPokemonResource(path: pokemonDetail.species.url)
+        let pokemonEvolution: PokemonEvolution = try await self.getPokemonResource(path: pokemonSpecies.evolutionChain.url)
+        
+        return PokemonModel(data: pokemonDetail, specie: pokemonSpecies, evolution: pokemonEvolution)
     }
     
 }

@@ -13,6 +13,7 @@ struct PokemonEvolution: Codable {
 
 struct BasicPokemonInfo: Codable {
     let name: String
+    let rawName: String
     let image: String
 }
 

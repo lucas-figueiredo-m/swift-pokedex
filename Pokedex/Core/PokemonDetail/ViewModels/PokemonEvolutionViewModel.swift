@@ -75,13 +75,15 @@ class PokemonEvolutionViewModel {
         var tempEvolutions: [Evolutions] = []
         
         let currentPokemon = BasicPokemonInfo(
-            name: chain.species.capitalizedName,
+            name: chain.species.capitalizedName.removeDash(),
+            rawName: chain.species.name,
             image: buildImageUrl(url: chain.species.url) ?? defaultPokemonImage
         )
         
         for evolution in chain.evolves_to {
             let nextPokemon = BasicPokemonInfo(
-                name: evolution.species.capitalizedName,
+                name: evolution.species.capitalizedName.removeDash(),
+                rawName: evolution.species.name,
                 image: buildImageUrl(url: evolution.species.url) ?? defaultPokemonImage
             )
             let evolution = Evolutions(

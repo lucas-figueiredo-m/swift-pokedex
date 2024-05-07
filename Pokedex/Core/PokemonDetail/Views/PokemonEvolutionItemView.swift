@@ -10,20 +10,31 @@ import Kingfisher
 
 struct PokemonEvolutionItemView: View {
     let evolution: Evolutions
+    @StateObject var viewModel: PokemonEvolutionItemViewModel
+    
+    init(evolution: Evolutions) {
+        self.evolution = evolution
+        _viewModel = StateObject(
+            wrappedValue: PokemonEvolutionItemViewModel(
+                fromPokemonName: evolution.from.rawName,
+                toPokemonName: evolution.to.rawName
+            ))
+    }
     
     var body: some View {
         HStack {
-            VStack {
-                KFImage(URL(string: evolution.from.image))
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                Text(evolution.from.name)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.black)
+            if let fromPokemon = viewModel.fromPokemon {
+                NavigationLink {
+                    PokemonDetailView(pokemon: fromPokemon)
+                } label: {
+                    LabeledPokemonView(image: evolution.from.image, name: evolution.from.name)
+                }
+            } else {
+                LabeledPokemonView(image: evolution.from.image, name: evolution.from.name)
             }
+            
             Spacer()
+            
             VStack {
                 Text(evolution.trigger)
                     .font(.caption)
@@ -34,16 +45,17 @@ struct PokemonEvolutionItemView: View {
                     .scaledToFit()
                     .frame(width: 50, height: 25)
             }
+            
             Spacer()
-            VStack {
-                KFImage(URL(string: evolution.to.image))
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                Text(evolution.to.name)
-                    .font(.headline)
-                    .fontWeight(.semibold)
-                    .foregroundStyle(.black)
+            
+            if let toPokemon = viewModel.toPokemon {
+                NavigationLink {
+                    PokemonDetailView(pokemon: toPokemon)
+                } label: {
+                    LabeledPokemonView(image: evolution.to.image, name: evolution.to.name)
+                }
+            } else {
+                LabeledPokemonView(image: evolution.to.image, name: evolution.to.name)
             }
         }
     }

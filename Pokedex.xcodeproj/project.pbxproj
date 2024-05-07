@@ -92,6 +92,10 @@
 		615A41CF2BEAA9900068F662 /* PokemonEvolutionItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonEvolutionItemViewModel.swift; sourceTree = "<group>"; };
 		615A41D12BEAAD8C0068F662 /* LabeledPokemonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledPokemonView.swift; sourceTree = "<group>"; };
 		615A41D32BEAC24A0068F662 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		615A41D42BEAC70F0068F662 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
+		615A41D62BEAC7C00068F662 /* screenshot-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot-2.png"; sourceTree = "<group>"; };
+		615A41D72BEAC7C10068F662 /* screenshot-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot-3.png"; sourceTree = "<group>"; };
+		615A41D82BEAC7C10068F662 /* screenshot-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "screenshot-1.png"; sourceTree = "<group>"; };
 		615AD2622BE2D08A0048B85B /* PokemonMovesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMovesView.swift; sourceTree = "<group>"; };
 		61F614832BE564C70026F512 /* PokemonListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewModel.swift; sourceTree = "<group>"; };
 		61FC989A2BDDAAB90067EA0B /* Pokedex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pokedex.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -146,6 +150,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		615A41D52BEAC74E0068F662 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				615A41D82BEAC7C10068F662 /* screenshot-1.png */,
+				615A41D62BEAC7C00068F662 /* screenshot-2.png */,
+				615A41D72BEAC7C10068F662 /* screenshot-3.png */,
+			);
+			path = screenshots;
+			sourceTree = "<group>";
+		};
 		61F6147B2BE55BDB0026F512 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +244,8 @@
 		61FC98912BDDAAB90067EA0B = {
 			isa = PBXGroup;
 			children = (
+				615A41D52BEAC74E0068F662 /* screenshots */,
+				615A41D42BEAC70F0068F662 /* LICENSE.md */,
 				615A41D32BEAC24A0068F662 /* README.md */,
 				61FC989C2BDDAAB90067EA0B /* Pokedex */,
 				61FC98AD2BDDAABC0067EA0B /* PokedexTests */,

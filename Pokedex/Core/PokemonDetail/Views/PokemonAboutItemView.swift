@@ -23,7 +23,7 @@ struct PokemonAboutItemView: View {
             
             Text(content)
                 .fontWeight(.semibold)
-                .foregroundStyle(.gray.darker(by: 30))
+                .foregroundStyle(darkGray)
         }
     }
 }

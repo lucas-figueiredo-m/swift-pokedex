@@ -37,7 +37,6 @@ class DevPreview {
             EvolutionDetail(
                 item: nil,
                 trigger: NamedAPIResource(name: "level-up", url: "https://pokeapi.co/api/v2/evolution-trigger/1/"),
-                gender: nil,
                 held_item: nil,
                 known_move: nil,
                 known_move_type: nil,
@@ -64,7 +63,7 @@ class DevPreview {
             EvolutionDetail(
                 item: nil,
                 trigger: NamedAPIResource(name: "level-up", url: "https://pokeapi.co/api/v2/evolution-trigger/1/"),
-                gender: nil,
+
                 held_item: nil,
                 known_move: nil,
                 known_move_type: nil,

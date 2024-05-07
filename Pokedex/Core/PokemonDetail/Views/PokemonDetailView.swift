@@ -9,10 +9,15 @@ import SwiftUI
 import PagerTabStripView
 
 struct PokemonDetailView: View {
+    @Environment(\.self) var environment
     var pokemon: PokemonModel
     
     init(pokemon: PokemonModel) {
         self.pokemon = pokemon
+    }
+    
+    var isBackgroundBright: Bool {
+        return pokemon.data.backgroundColor.isBrightColor(for: environment)
     }
     
     var body: some View {
@@ -57,7 +62,14 @@ struct PokemonDetailView: View {
                 }
                 .padding()
                 .background(.white)
-                .clipShape(CustomShape())
+                .clipShape(
+                    .rect(
+                        topLeadingRadius: 35,
+                        bottomLeadingRadius: 0,
+                        bottomTrailingRadius: 0,
+                        topTrailingRadius: 35
+                    )
+                )
             }
             .ignoresSafeArea(.all, edges: .bottom)
             .background(pokemon.data.backgroundColor)
@@ -65,9 +77,10 @@ struct PokemonDetailView: View {
         .navigationTitle(pokemon.data.capitalizedName)
         .navigationBarTitleDisplayMode(.inline)
         .background(.white)
-        .preferredColorScheme(.dark)
+        .tint(isBackgroundBright ? .black : .white)
+        .preferredColorScheme(isBackgroundBright ? .light : .dark)
     }
-        
+    
 }
 
 #Preview {

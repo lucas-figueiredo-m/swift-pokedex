@@ -9,6 +9,12 @@ import SwiftUI
 
 struct PokemonDetailHeaderView: View {
     let pokemon: PokemonDataModel
+    @Environment(\.self) var environment
+    
+    var isBackgroundBright: Bool {
+        return pokemon.backgroundColor.isBrightColor(for: environment)
+    }
+    
     var body: some View {
         VStack {
             HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
@@ -22,7 +28,7 @@ struct PokemonDetailHeaderView: View {
                     .font(.subheadline)
                     .fontWeight(.black)
             }
-            .foregroundStyle(.white)
+            .foregroundStyle(isBackgroundBright ? .black : .white)
             
             HStack {
                 ForEach(pokemon.types) { type in

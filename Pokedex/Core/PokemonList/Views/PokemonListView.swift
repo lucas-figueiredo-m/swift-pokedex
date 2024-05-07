@@ -30,7 +30,7 @@ struct PokemonListView: View {
                             .padding(.horizontal, 20)
                             .padding(.vertical, 16)
                             .foregroundColor(.black)
-                            .background(Color(UIColor.lightGray))
+                            .background(lightGray)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
                             .task {
                                 await viewModel.loadMoreContent()
@@ -42,7 +42,7 @@ struct PokemonListView: View {
             .preferredColorScheme(.light)
             .navigationTitle("Pokemons")
         }
-        .tint(.white)
+        .tint(.black)
         .searchable(text: $viewModel.searchText)
     }
 }

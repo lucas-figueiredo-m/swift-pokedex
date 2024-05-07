@@ -32,7 +32,6 @@ struct ChainLink: Codable {
 struct EvolutionDetail: Codable {
     let item: NamedAPIResource?
     let trigger: NamedAPIResource
-    let gender: NamedAPIResource?
     let held_item: NamedAPIResource?
     let known_move: NamedAPIResource?
     let known_move_type: NamedAPIResource?

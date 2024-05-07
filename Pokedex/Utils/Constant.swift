@@ -16,6 +16,9 @@ let pokemonAbout = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ali
 
 let defaultPokemonImage = ""
 
+let lightGray: Color = Color("ColorLightGray")
+let darkGray: Color = Color("ColorDarkGray")
+
 let colorBackground: Color = Color("ColorBackground")
 let colorFire: Color = Color("ColorFire")
 let colorWater: Color = Color("ColorWater")

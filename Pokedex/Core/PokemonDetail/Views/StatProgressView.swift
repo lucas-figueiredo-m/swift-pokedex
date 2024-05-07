@@ -36,7 +36,7 @@ struct StatProgressView: View {
                 Text("\(value.formatted())")
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .foregroundStyle(.gray.darker(by: 30))
+                    .foregroundStyle(darkGray)
             }
             .frame(maxWidth: 120)
             

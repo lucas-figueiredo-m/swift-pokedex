@@ -75,7 +75,9 @@ struct PokemonDetailView: View {
             .background(pokemon.data.backgroundColor)
         }
         .navigationTitle(pokemon.data.capitalizedName)
+        #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
+        #endif
         .background(.white)
         .tint(isBackgroundBright ? .black : .white)
         .preferredColorScheme(isBackgroundBright ? .light : .dark)
